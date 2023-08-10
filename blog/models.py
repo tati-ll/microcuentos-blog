@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
-
-# Create your models here.
+from django.urls import reverse
 
 class Post(models.Model):
     titulo = models.CharField(max_length=255)
@@ -23,3 +22,9 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.titulo 
+    
+    class Meta:
+        verbose_name_plural = 'categorias'
+    
+    def get_absolute_url(self):
+        return reverse("blog:categoria", kwargs={"pk": self.pk})

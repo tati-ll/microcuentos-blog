@@ -65,12 +65,9 @@ https://templatemo.com/tm-590-topic-listing
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#cat_1">Crítica</a></li>
-                                    <li><a class="dropdown-item" href="#cat_2">Comedia</a></li>
-                                    <li><a class="dropdown-item" href="#cat_3">Ciencia ficción</a></li>
-                                    <li><a class="dropdown-item" href="#cat_4">Terror</a></li>
-                                    <li><a class="dropdown-item" href="#cat_5">Infantil</a></li>
-                                    <li><a class="dropdown-item" href="#cat_6">Fantasia</a></li>
+                                    {% for categoria in categorias %}
+                                        <li><a class="dropdown-item" href="{% url 'categoria' categoria.slug %}">{{categoria.titulo}}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </li>
                         </ul>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{ post.titulo }} | {% endblock titulo %}
+
+{% block contenido %}
+
+<div class="col-lg-8 col-12 mt-3 mx-auto">
+    <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
+        <div class="d-flex">
+            <div class="custom-block-topics-listing-info d-flex">
+                <div>
+                    <h6 style="color: gray;">Fecha de publicación: {{ post.fecha|date:'d-M-Y' }}</h6>
+                    <h6 style="color: gray;">Categoría:
+                        {% for categoria in post.categoria.all %}
+                        <span>{{ categoria.titulo }}</span>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </h6>
+                    <h2>{{ post.titulo }}</h2>
+                    <p>{{ post.subtitulo }}</p>
+                    <h5>{{ post.cuerpo }}</h5>
+                    <p><b>Publicado por: {{ post.autor }}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock contenido%}
