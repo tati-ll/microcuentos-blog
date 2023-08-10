@@ -36,16 +36,12 @@ https://templatemo.com/tm-590-topic-listing
 
         <main>
 
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-lg" style="background-color: #80d0c7;">
                 <div class="container">
                     <a class="navbar-brand">
                         <i class="bi-back"></i>
                         <span>MiBlog</span>
                     </a>
-
-                    <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                    </div>
     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -54,20 +50,27 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                                <a class="nav-link click-scroll" href="{% url 'home' %}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_2">Acerca de mí</a>
+                                <a class="nav-link" href="{% url 'about' %}">Acerca de mí</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'pages' %}">Publicaciones</a>
                             </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="topics-listing.html">Categoría 1</a></li>
-
-                                    <li><a class="dropdown-item" href="contact.html">Categoría 2</a></li>
+                                    <li><a class="dropdown-item" href="#cat_1">Crítica</a></li>
+                                    <li><a class="dropdown-item" href="#cat_2">Comedia</a></li>
+                                    <li><a class="dropdown-item" href="#cat_3">Ciencia ficción</a></li>
+                                    <li><a class="dropdown-item" href="#cat_4">Terror</a></li>
+                                    <li><a class="dropdown-item" href="#cat_5">Infantil</a></li>
+                                    <li><a class="dropdown-item" href="#cat_6">Fantasia</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -77,36 +80,10 @@ https://templatemo.com/tm-590-topic-listing
                         </div>
                     </div>
                 </div>
-            </nav>
-            
+            </nav> 
+        </main>          
 
-            <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-8 col-12 mx-auto">
-                            <h1 class="text-white text-center">Descubre nuevos microrrelatos</h1>
-
-                            <h6 class="text-center">Blog para creativos de todo el mundo</h6>
-
-                            <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-text bi-search" id="basic-addon1">
-                                        
-                                    </span>
-
-                                    <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Palabra clave..." aria-label="Search">
-
-                                    <button type="submit" class="form-control">Buscar</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section class="explore-section section-padding" id="section_2">
+            <section class="explore-section section-padding">
                 {% block contenido %} {% endblock contenido %}
             </section>
 
@@ -124,7 +101,7 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="col-lg-3 col-md-4 col-6">
                         <ul class="site-footer-links">
                             <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">Volver al home</a>
+                                <a href="{% url 'home' %}" class="site-footer-link">Volver al home</a>
                             </li>
                         </ul>
                     </div>
@@ -132,13 +109,13 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
                         <ul class="site-footer-links">
                             <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">Acerca de mí</a>
+                                <a href="{% url 'about' %}" class="site-footer-link">Acerca de mí</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </footer>
+</footer>
 
 
         <!-- JAVASCRIPT FILES -->
