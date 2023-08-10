@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block contenido %} 
+<section class="hero ">
+    <div class="hero-body">
+        <div class="container">
+            <section class="section">
+                <div class="columns">
+                    <div class="column is-8 is-offset-2">
+                        {% for post in posts %}
+                            <div class="content is-medium">
+                                <h2 class="subtitle is-5 has-text-grey">{{ post.fecha|date:'d-M-Y' }}</h2>
+                                <h1 class="title has-text-black is-3">{{ post.titulo }}</h1>
+                                <p class="has-text-dark">{{ post.subtitulo }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+{% endblock contenido %}
