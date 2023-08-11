@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
+from django.views.generic import FormView
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import AuthenticationForm
 from perfiles.models import Usuario
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -9,8 +11,10 @@ from django.views.generic import UpdateView, DeleteView
 from perfiles.models import Usuario
 from blog.urls import * 
 from blog.models import Post
+from perfiles.forms import RegisterForm
 
 class LoginView(LoginView):
+    form_class = AuthenticationForm
     template_name = 'perfiles/login.html'
 
 class UsuarioDetailView(generic.DetailView):
@@ -40,3 +44,12 @@ def user_posts(request):
     posts = Post.objects.filter(autor=user)
     context = {'posts': posts}
     return render(request, 'perfiles/user_posts.html', context)
+
+class UsuarioRegistro(FormView):
+    template_name = 'perfiles/registro.html'
+    form_class = RegisterForm
+    success_url =reverse_lazy('perfiles:success')
+
+    def form_valid(self, form):
+        form.save()
+        return super(UsuarioRegistro, self).form_valid(form)

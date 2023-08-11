@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Login | {% endblock title %}
+{% block title %}Registro | {% endblock title%}
 
 {% block contenido %}
 
@@ -9,14 +9,14 @@
         <div class="d-flex">
             <div class="custom-block-topics-listing-info d-flex">
                 <div>
-                    <h2>Iniciar sesión</h2>
-                    <form method="post">
+                    <h2>Registrarme</h2>
+                    <form method="POST" class="form-group">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit">Iniciar sesión</button>
-                        <br>
-                        <a href="{% url 'perfiles:registro_usuario' %}">¿No tienes una cuenta? Crea una.</a>
+                        <button type="submit">Aceptar</button>
                     </form>
+                    <br>
+                    <p>Luego del registro, podrás agregar otros datos en tu perfil.</p>
                 </div>
             </div>
         </div>
