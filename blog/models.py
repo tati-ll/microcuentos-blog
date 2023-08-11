@@ -11,6 +11,7 @@ class Post(models.Model):
     autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     fecha = models.DateTimeField(auto_now_add=True)
     categoria = models.ManyToManyField('Categoria')
+    imagen = models.ImageField(blank=True, null=True)
     
     def __str__(self):
         return self.titulo

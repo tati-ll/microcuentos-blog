@@ -41,6 +41,9 @@
                 {% for post in posts %}
                     <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
                         <div class="d-flex">
+                            {% if post.imagen %}
+                                <img src="{{ post.imagen.url }}" class="custom-block-image img-fluid" alt="imagen">
+                            {% endif %}
                             <div class="custom-block-topics-listing-info d-flex">
                                 <div>
                                     <h6 class="subtitle is-4">{{ post.fecha|date:'d-M-Y' }}</h6>

@@ -67,7 +67,7 @@ class Buscar(generic.ListView):
 @login_required
 def CrearPost(request):
     if request.method == 'POST':
-        formulario = PostForm(request.POST)
+        formulario = PostForm(request.POST, request.FILES)
         if formulario.is_valid():
             post = formulario.save(commit=False)
             post.autor = request.user
@@ -79,7 +79,7 @@ def CrearPost(request):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['titulo', 'subtitulo', 'cuerpo', 'categoria']
+    fields = ['titulo', 'subtitulo', 'cuerpo', 'categoria', 'imagen']
     template_name = 'blog/post_form.html'
     success_url= reverse_lazy('perfiles:mis_publicaciones')
 
