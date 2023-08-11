@@ -12,7 +12,7 @@
                 <h2 class="mb-4">Mis publicaciones</h2>
             </div>
             <div class="col-lg-12 col-12 text-center">
-                <h5><a href="#">Crear nueva publicación</a></h5>
+                <h5><a href="{% url 'blog:crear_post' %}">Crear nueva publicación</a></h5>
             </div>
 
             <div class="col-lg-8 col-12 mt-3 mx-auto">
@@ -26,8 +26,8 @@
                                     <p class="mb-1"><strong>{{ post.subtitulo }}</strong></p>
                                     <a href="{% url 'blog:detalle' post.id %}" class="btn custom-btn mt-3 mt-lg-4">Leer más</a>
                                     <br>
-                                    <a href="#">Editar publicación | </a>
-                                    <a style="color:#E74C3C;" href="#">Eliminar publicación</a>
+                                    <a href="{% url 'blog:editar_post' post.id %}">Editar publicación | </a>
+                                    <a style="color:#E74C3C;" href="{% url 'blog:eliminar_post' post.id %}">Eliminar publicación</a>
                                 </div>
                             </div>
                         </div>

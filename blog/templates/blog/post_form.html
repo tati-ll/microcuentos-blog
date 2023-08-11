@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar post | {% endblock title %}
+
+{% block contenido %}
+
+<div class="col-lg-8 col-12 mt-3 mx-auto">
+        <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
+            <div class="d-flex">
+                <div class="custom-block-topics-listing-info d-flex">
+                    <div>
+                        <h2>Editar mi publicación</h2>
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit">Aceptar</button>
+                            </form>
+                    </div>   
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock contenido %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+from django.utils.text import slugify
 
 class Post(models.Model):
     titulo = models.CharField(max_length=255)
@@ -15,6 +16,17 @@ class Post(models.Model):
         return self.titulo
     class Meta:
         ordering = ('-fecha',)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.titulo)
+            unique_slug = base_slug
+            num = 1
+            while Post.objects.filter(slug=unique_slug).exists():
+                unique_slug = f"{base_slug}-{num}"
+                num += 1
+            self.slug = unique_slug
+        super().save(*args, **kwargs)
 
 class Categoria(models.Model):
     titulo = models.CharField(max_length=255)

@@ -1,11 +1,15 @@
 from typing import Any, Dict
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
+from django.views.generic import UpdateView, DeleteView
 from django.db.models import Q
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 from blog.models import Post, Categoria
+from blog.forms import PostForm
 
 def home(request):
     posts = Post.objects.order_by('-fecha')[:3]
@@ -59,3 +63,35 @@ class Buscar(generic.ListView):
             Q(titulo__icontains=query) | Q(categoria__slug__icontains=query)
         ).distinct()
         return post_list
+    
+@login_required
+def CrearPost(request):
+    if request.method == 'POST':
+        formulario = PostForm(request.POST)
+        if formulario.is_valid():
+            post = formulario.save(commit=False)
+            post.autor = request.user
+            post.save()
+            return redirect('perfiles:mis_publicaciones') 
+    else:
+        form = PostForm()
+    return render(request, 'blog/crear_post.html', {'form': form})
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['titulo', 'subtitulo', 'cuerpo', 'categoria']
+    template_name = 'blog/post_form.html'
+    success_url= reverse_lazy('perfiles:mis_publicaciones')
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(autor=self.request.user)
+    
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    template_name = 'blog/post_confirm_delete.html'
+    success_url = reverse_lazy('perfiles:mis_publicaciones')
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(autor=self.request.user)
