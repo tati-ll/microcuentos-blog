@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Publicaciones | {% endblock title %}
+{% block title %}Mis posts | {% endblock title %}
 
 {% block contenido %}
+
 <section class="section-padding">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-12 col-12 text-center">
-                <h2 class="mb-4">Publicaciones</h2>
+                <h2 class="mb-4">Mis publicaciones</h2>
+            </div>
+            <div class="col-lg-12 col-12 text-center">
+                <h5><a href="#">Crear nueva publicación</a></h5>
             </div>
 
             <div class="col-lg-8 col-12 mt-3 mx-auto">
@@ -20,15 +24,20 @@
                                     <h6 class="subtitle is-4">{{ post.fecha|date:'d-M-Y' }}</h6>
                                     <h3 class="mb-2">{{ post.titulo }}</h3>
                                     <p class="mb-1"><strong>{{ post.subtitulo }}</strong></p>
-                                    <p class="mb-0">Publicado por el usuario {{ post.autor }}.</p>
                                     <a href="{% url 'blog:detalle' post.id %}" class="btn custom-btn mt-3 mt-lg-4">Leer más</a>
+                                    <br>
+                                    <a href="#">Editar publicación | </a>
+                                    <a style="color:#E74C3C;" href="#">Eliminar publicación</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                {% empty %}
+                    <li>No tienes publicaciones.</li> 
                 {% endfor %}
             </div>
         </div>
     </div>
 </section>
+
 {% endblock contenido %}

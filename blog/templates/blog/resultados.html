@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Lista de artículos | {% endblock titulo %}
+{% block title %}Lista de artículos | {% endblock title %}
 
 {% block contenido %}
 <section class="section-padding">
@@ -22,7 +22,7 @@
                                         <h3 class="mb-2">{{ post.titulo }}</h3>
                                         <p class="mb-1"><strong>{{ post.subtitulo }}</strong></p>
                                         <p class="mb-0">Publicado por el usuario {{ post.autor }}.</p>
-                                        <a href="{% url 'detalle' post.id %}" class="btn custom-btn mt-3 mt-lg-4">Leer más</a>
+                                        <a href="{% url 'blog:detalle' post.id %}" class="btn custom-btn mt-3 mt-lg-4">Leer más</a>
                                     </div>
                                 </div>
                             </div>

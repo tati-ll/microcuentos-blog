@@ -50,15 +50,15 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="{% url 'home' %}">Home</a>
+                                <a class="nav-link click-scroll" href="{% url 'blog:home' %}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'about' %}">Acerca de mí</a>
+                                <a class="nav-link" href="{% url 'blog:about' %}">Acerca de mí</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'pages' %}">Publicaciones</a>
+                                <a class="nav-link" href="{% url 'blog:pages' %}">Publicaciones</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -66,15 +66,30 @@ https://templatemo.com/tm-590-topic-listing
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                     {% for categoria in categorias %}
-                                        <li><a class="dropdown-item" href="{% url 'categoria' categoria.slug %}">{{categoria.titulo}}</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'blog:categoria' categoria.slug %}">{{categoria.titulo}}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li>
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                            {% if user.is_authenticated %}
+                                <div class="dropdown show">
+                                    <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ user.username }}
+                                    </a>
+                                
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{% url 'perfiles:perfil' user.id %}">Mis datos</a>
+                                        <a class="dropdown-item" href="{% url 'perfiles:mis_publicaciones' %}">Mis publicaciones</a>
+                                        <a class="dropdown-item" href="{% url 'perfiles:logout' %}">Cerrar sesión</a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <a class="btn btn-outline-light ms-2" href="{% url 'perfiles:login' %}" role="button">Iniciar sesión</a>
+                            {% endif %}
                         </div>
+                        
                     </div>
                 </div>
             </nav> 
@@ -98,7 +113,7 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="col-lg-3 col-md-4 col-6">
                         <ul class="site-footer-links">
                             <li class="site-footer-link-item">
-                                <a href="{% url 'home' %}" class="site-footer-link">Volver al home</a>
+                                <a href="{% url 'blog:home' %}" class="site-footer-link">Volver al home</a>
                             </li>
                         </ul>
                     </div>
@@ -106,7 +121,7 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
                         <ul class="site-footer-links">
                             <li class="site-footer-link-item">
-                                <a href="{% url 'about' %}" class="site-footer-link">Acerca de mí</a>
+                                <a href="{% url 'blog:about' %}" class="site-footer-link">Acerca de mí</a>
                             </li>
                         </ul>
                     </div>

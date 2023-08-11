@@ -12,7 +12,7 @@
 
                 <h6 class="text-center">Blog para creativos de todo el mundo</h6>
 
-                <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search" action={% url 'buscar'%}>
+                <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search" action={% url 'blog:buscar'%}>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text bi-search" id="basic-addon1">
                             
@@ -47,7 +47,7 @@
                                     <h3 class="mb-2">{{ post.titulo }}</h3>
                                     <p class="mb-1"><strong>{{ post.subtitulo }}</strong></p>
                                     <p class="mb-0">Publicado por el usuario {{ post.autor }}.</p>
-                                    <a href="{% url 'detalle' post.id %}" class="btn custom-btn mt-3 mt-lg-4">Leer más</a>
+                                    <a href="{% url 'blog:detalle' post.id %}" class="btn custom-btn mt-3 mt-lg-4">Leer más</a>
                                 </div>
                             </div>
                         </div>
