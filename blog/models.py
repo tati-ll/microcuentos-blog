@@ -8,7 +8,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     subtitulo = models.TextField()
     cuerpo = models.TextField()
-    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     fecha = models.DateTimeField(auto_now_add=True)
     categoria = models.ManyToManyField('Categoria')
     imagen = models.ImageField(blank=True, null=True)
